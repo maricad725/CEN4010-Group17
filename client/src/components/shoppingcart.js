@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 
 const Book = props => (
@@ -14,11 +14,14 @@ const Book = props => (
     <td>${props.book.price}</td>
     <td>{props.book.rating} Stars</td>
     <td>
-    <button onClick={() => props.deleteBook(props.book._id)}>Remove from Cart</button>
+    <button onClick={() => props.deleteBook(props.book._id)} >Remove from Cart</button>
     </td>
     <td>
     <button onClick={() => props.saveForLater(props.book._id)}>Save for Later</button>
     </td>
+      <label for="quantity">Quantity:</label>
+      <input type="text" id="quantity" name="quantity" placeholder="1" pattern="[0-9]{1}" size="1"></input>
+      <input type="submit" value="Submit"></input>
   </tr>
 )
 
@@ -114,12 +117,14 @@ componentDidMount() {
     axios.post('http://localhost:5000/carts/updateDelete/'+ this.state.cart._id + '/' +id)
       .then(response => { console.log(response.data)});
     this.setState({subtotal: this.state.cart.subtotal,books: this.state.books.filter(el => el._id !== id)})
+    window.location.reload();
   }
 
   saveForLater(id){
     axios.post('http://localhost:5000/carts/updateSaveForLater/'+ this.state.cart._id + '/' +id)
       .then(response => { console.log(response.data)});
     this.setState({subtotal: this.state.cart.subtotal,books: this.state.books.filter(el => el._id !== id)})
+    window.location.reload();
   }
 
   bookList() {
@@ -140,18 +145,20 @@ componentDidMount() {
 
           axios.post('http://localhost:5000/carts/updateDeleteSaveForLater/'+ this.state.cart._id + '/' +id)
       .then(response => { console.log(response.data)});
-    this.setState({save4Later: this.state.save4Later.filter(el => el._id !== id)});
+    this.setState({save4Later: this.state.save4Later.filter(el => el !== id)});
+    window.location.reload();
   }
 
   deleteSavedBook(id){
     console.log(this.state.cart._id);
     axios.post('http://localhost:5000/carts/updateDeleteSaveForLater/'+ this.state.cart._id + '/' +id)
       .then(response => { console.log(response.data)});
-    this.setState({save4Later: this.state.save4Later.filter(el => el._id !== id)});
+    this.setState({save4Later: this.state.save4Later.filter(el => el !== id)});
+    window.location.reload();
   }
-
   render() {
     return (
+      <html>
       <div>
         <h3>Shopping Cart</h3>
         <table className="table">
@@ -168,8 +175,7 @@ componentDidMount() {
             {this.bookList()}
           </tbody>
         </table>
-    <h3>Subtotal: ${this.state.subtotal}.00</h3>
-    <h3>  </h3>
+    <h3> Subtotal: ${this.state.subtotal}.00 </h3>
     <h3></h3>
     <h3>Save For Later</h3>
         <table className="table">
@@ -186,8 +192,8 @@ componentDidMount() {
                 {this.saveForLaterList()}
               </tbody>
             </table>
-
       </div>
+      </html>
     )
   }
 }
