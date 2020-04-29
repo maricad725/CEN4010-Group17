@@ -6,13 +6,10 @@ import SingleComment from './SingleComment';
 
 function Comments(props) {
 
-<<<<<<< HEAD
-=======
     const [user, setUser] = useState({
         nickName: "Julio Rodriguez",
         _id: "532BjKb12j3PJ6"
     });
->>>>>>> Alex-BrowsingAndSorting
     const [Comment, setComment] = useState("")
     
     const handleChange = (e) => {
@@ -24,16 +21,6 @@ function Comments(props) {
 
         const variables = {
             content: Comment,
-<<<<<<< HEAD
-            isPurchased: true,
-            postId: props.postId
-        }
-
-        axios.post(`http://localhost:5000/comment/saveComment`, variables)
-        .then(response=> {
-            if(response.data.success) {
-                setComment("");
-=======
             author: user.nickName,
             postId: props.postId
         }
@@ -42,7 +29,6 @@ function Comments(props) {
         .then(response=> {
             if(response.data.success) {
                 setComment("")
->>>>>>> Alex-BrowsingAndSorting
                 props.refreshFunction(response.data.result)
             } else {
                 alert('Failed to save Comment')
@@ -51,23 +37,14 @@ function Comments(props) {
     }
     return (
         <div>
-<<<<<<< HEAD
-        
-=======
         <Header as='h3' dividing> 
         Comments
         </Header>
->>>>>>> Alex-BrowsingAndSorting
 
         {console.log(props.CommentLists)}
 
         {props.CommentLists && props.CommentLists.map((comment, index) => (
             (!comment.responseTo &&
-<<<<<<< HEAD
-                <React.Fragment>
-                    <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction}/>
-                </React.Fragment>
-=======
                 <div>
                 <Comment>
                     <Comment.Avatar 
@@ -79,7 +56,6 @@ function Comments(props) {
                      </Comment.Content>
                   </Comment>
             </div>
->>>>>>> Alex-BrowsingAndSorting
             )
 
         ))}
@@ -92,11 +68,6 @@ function Comments(props) {
                   onChange={handleChange}
                   value={Comment}
                   type='text'
-<<<<<<< HEAD
-                  maxlength='130'
-                  style={{width: '600px', borderRadius:'5px'}}
-=======
->>>>>>> Alex-BrowsingAndSorting
                 />
                 <Button
                   content='Create Customer Review'
@@ -105,16 +76,6 @@ function Comments(props) {
                   primary
                   onClick={onSubmit}
                 />
-<<<<<<< HEAD
-                <Button
-                  content='Post Anonymously'
-                  labelPostion='right'
-                  icon='edit'
-                  primary
-                  onClick={onSubmit}
-                />
-=======
->>>>>>> Alex-BrowsingAndSorting
               </Form>
           
               </div>

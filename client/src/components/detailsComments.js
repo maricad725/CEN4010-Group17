@@ -2,10 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../styles/detailsComments.css";
 import Comments from "./CommentSection/Comments";
 import StarRating from "./CommentSection/StarRating";
-<<<<<<< HEAD
-import { Comment, Header } from 'semantic-ui-react';
-=======
->>>>>>> Alex-BrowsingAndSorting
 import axios from "axios";
 
 function DetailsComments(props) {
@@ -30,11 +26,7 @@ function DetailsComments(props) {
   console.log(bookId);
 
   useEffect(() => {
-<<<<<<< HEAD
-     axios.post(`http://localhost:5000/comment/getComments`, bookVariable).then((response) => {
-=======
      axios.post("/api/comment/getComments", bookVariable).then((response) => {
->>>>>>> Alex-BrowsingAndSorting
        if (response.data.success) {
          setBook(response.data.Book);
          setCommentLists(response.data.comments);
@@ -48,13 +40,8 @@ function DetailsComments(props) {
   console.log(Info);
 
   const updateComment = (newComment) => {
-<<<<<<< HEAD
-    setCommentLists(CommentLists.concat(newComment))
-  }
-=======
     setCommentLists(CommentLists.push(newComment));
   };
->>>>>>> Alex-BrowsingAndSorting
 
   return (
     <div className='parent'>
@@ -81,33 +68,15 @@ function DetailsComments(props) {
         <h1>
           <StarRating></StarRating>
         </h1>
-<<<<<<< HEAD
-        <Header as='h3' dividing> 
-        Comments
-        </Header>
-
-      <Comment.Group>
-        <Comments
-          CommentLists={CommentLists}
-          postId={bookId}
-          refreshFunction={updateComment}
-        />
-        </Comment.Group>
-=======
 
         <Comments
           CommentLists={CommentLists}
           postId={Book._id}
           refreshFunction={updateComment}
         />
->>>>>>> Alex-BrowsingAndSorting
       </div>
     </div>
   );
 }
 
-<<<<<<< HEAD
-export default DetailsComments
-=======
 export default DetailsComments;
->>>>>>> Alex-BrowsingAndSorting

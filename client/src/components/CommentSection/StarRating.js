@@ -33,8 +33,4 @@ const StarRating = () => {
   );
 };
 
-<<<<<<< HEAD
 export default StarRating;
-=======
-export default StarRating;
->>>>>>> Alex-BrowsingAndSorting
